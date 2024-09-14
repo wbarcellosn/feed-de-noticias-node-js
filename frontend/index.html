@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Últimas Notícias</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <h1>Últimas Notícias</h1>
+  </header>
+
+  <div class="container">
+    <div class="search-bar">
+      <button onkeydown="pesquisarNoticias()">
+        <input type="text" id="pesquisa" placeholder="Pesquisar por título..." >
+      </button>
+    </div>
+
+    <div class="grid-noticias">
+      <ul id="lista-noticias" class="news-list">
+      </ul>
+    </div>
+  </div>
+
+  <footer>
+    <p>Aplicação de Notícias - Desenvolvido com Node.js</p>
+  </footer>
+
+  <script src="./script.js"></script>
+</body>
+</html>
