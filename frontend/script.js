@@ -1,4 +1,5 @@
 async function carregarNoticias() {
+
   try {
     const resposta = await fetch('http://localhost:3000/noticias');
     const noticias = await resposta.json();
@@ -12,7 +13,7 @@ async function carregarNoticias() {
 function exibirNoticias(noticias) {
 
   const listaNoticias = document.getElementById('lista-noticias');
-
+  
   listaNoticias.innerHTML = '';
 
   if (noticias.length === 0) {
@@ -20,19 +21,25 @@ function exibirNoticias(noticias) {
     return;
   }
 
+  function substituirLeiaMais(conteudo, url) {
+    const conteudoLimpo = conteudo.replace(/\[\+\d+\s+chars\]/, '');
+    return conteudoLimpo + ` <a href="${url}" target="_blank">Leia mais</a>`;
+  }
+    
   noticias.forEach(item => {
+    
     const li = document.createElement('li');
-      
+    
     if (item.urlToImage == null) {
-
       li.style.display ="none";
     }
 
+    const conteudoComLeiaMais = substituirLeiaMais(item.content, item.url)
+    
       li.innerHTML = `
-      <h2>${item.title}</h2>
-      <img src="${item.urlToImage}" />
-      <p>${item.description ? item.description : 'Sem descrição disponível'}</p>
-      <a href="${item.url}" target="_blank">Leia mais</a>
+      <img class="imagem-noticia" src="${item.urlToImage}" />
+      <h2 class="titulo-noticia">${item.title}</h2>
+      <p class="conteudo-noticia">${conteudoComLeiaMais}</p>
     `;
 
     listaNoticias.appendChild(li);
@@ -52,6 +59,9 @@ async function pesquisarNoticias() {
     }
     
   }
+
+  
+  
 }
 
 carregarNoticias();
