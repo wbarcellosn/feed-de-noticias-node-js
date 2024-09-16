@@ -22,6 +22,12 @@ function exibirNoticias(noticias) {
   }
 
   function substituirLeiaMais(conteudo, url) {
+
+    if (!conteudo) {
+      console.warn('Conteúdo nulo ou indefinido passado para substituirLeiaMais');
+      conteudo = '';
+    }
+
     const conteudoLimpo = conteudo.replace(/\[\+\d+\s+chars\]/, '');
     return conteudoLimpo + ` <a href="${url}" target="_blank">Leia mais</a>`;
   }
@@ -30,7 +36,7 @@ function exibirNoticias(noticias) {
     
     const li = document.createElement('li');
     
-    if (item.urlToImage == null) {
+    if (item.urlToImage == null || item.content == null) {
       li.style.display ="none";
     }
 
